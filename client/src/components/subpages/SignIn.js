@@ -9,11 +9,11 @@ export default function SignIn(props) {
 	const userSignIn = useSelector((state) => state.userSignIn);
 	const { loading, userInfo, error } = userSignIn;
 	const dispatch = useDispatch();
-
+	const redirect = props.location.search ? props.location.search.split('=')[1] : '/';
 	useEffect(
 		() => {
 			if (userInfo) {
-				props.history.push('/');
+				props.history.push(redirect);
 			}
 			return () => {
 				//
@@ -31,7 +31,7 @@ export default function SignIn(props) {
 			<form onSubmit={submitHandler}>
 				<ul className="form-container">
 					<li>
-						<h2>Bejelentkezés</h2>
+						<h2>Login</h2>
 					</li>
 					<li>
 						{loading && <div>Loading...</div>}
@@ -57,7 +57,10 @@ export default function SignIn(props) {
 					</li>
 					<li>New here?</li>
 					<li>
-						<Link to="/register" className="button secondary text-center">
+						<Link
+							to={redirect === '/' ? 'register' : 'register?redirect=' + redirect}
+							className="button secondary text-center"
+						>
 							Create your account
 						</Link>
 					</li>

@@ -7,6 +7,9 @@ import Cart from '../subpages/Cart';
 import SignIn from '../subpages/SignIn';
 import Register from '../subpages/Register';
 import AddProduct from '../subpages/AddProduct';
+import Shipping from '../subpages/Shipping';
+import Payment from '../subpages/Payment';
+import PlaceOrder from '../subpages/PlaceOrder';
 
 export default function Routes() {
 	return (
@@ -18,6 +21,9 @@ export default function Routes() {
 				<Route path="/signin" component={SignIn} />
 				<Route path="/register" component={Register} />
 				<Route path="/products" component={AddProduct} />
+				<Route path="/placeorder" component={PlaceOrder} />
+				<Route path="/shipping" component={Shipping} />
+				<Route path="/payment" component={Payment} />
 				<Route component={NotFound} />
 			</Switch>
 		</div>
