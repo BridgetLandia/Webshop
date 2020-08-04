@@ -1,13 +1,9 @@
 import express from 'express';
-import data from './data';
-import dotenv from 'dotenv';
 import config from './config';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import userRoute from './routes/userRoute';
 import productRoute from './routes/productRoute';
-
-dotenv.config();
 
 const mongodbUrl = config.MONGODB_URL;
 mongoose
