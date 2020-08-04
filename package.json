@@ -20,8 +20,8 @@
 	},
 	"homepage": "https://github.com/BridgetLandia/Knit-Style#readme",
 	"engines": {
-		"node": "12.x",
-		"npm": "6.14.7"
+		"node": "12.4.0",
+		"npm": "6.9.0"
 	},
 	"dependencies": {
 		"body-parser": "^1.19.0",
