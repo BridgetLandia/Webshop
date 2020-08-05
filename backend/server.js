@@ -21,9 +21,9 @@ app.use(bodyParser.json());
 app.use('/api/users', userRoute);
 app.use('/api/products', productRoute);
 app.use('/api/orders', orderRoute);
-app.use(express.static(path.join(__dirname, '/../client/build')));
+app.use(express.static(path.join(__dirname, '/../frontend/build')));
 app.get('*', (req, res) => {
-	res.sendFile(path.join(`${__dirname}/../client/build/index.html`));
+	res.sendFile(path.join(`${__dirname}/../frontend/build/index.html`));
 });
 
 // app.get('/api/products/:id', (req, res) => {
