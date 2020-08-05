@@ -1,9 +1,11 @@
 import express from 'express';
+import path from 'path';
 import config from './config';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import userRoute from './routes/userRoute';
 import productRoute from './routes/productRoute';
+import orderRoute from './routes/orderRoute';
 
 const mongodbUrl = config.MONGODB_URL;
 mongoose
@@ -18,6 +20,11 @@ const app = express();
 app.use(bodyParser.json());
 app.use('/api/users', userRoute);
 app.use('/api/products', productRoute);
+app.use('/api/orders', orderRoute);
+app.use(express.static(path.join(__dirname, '/../client/build')));
+app.get('*', (req, res) => {
+	res.sendFile(path.join(`${__dirname}/../client/build/index.html`));
+});
 
 // app.get('/api/products/:id', (req, res) => {
 // 	const productId = req.params.id;
@@ -30,6 +37,6 @@ app.use('/api/products', productRoute);
 // 	res.send(data.products);
 // });
 
-app.listen(5000, () => {
+app.listen(config.PORT, () => {
 	console.log('Server strated');
 });

@@ -1,47 +1,101 @@
-import React from 'react'
-import sheep from '../../assets/sheep.svg'
-import pulover from '../../assets/pulover.jpg'
-import baby from '../../assets/baby.jpg'
-import { Container, Row } from 'reactstrap';
+import React, { useEffect } from 'react';
+import { addToCart, removeFromCart } from '../../actions/cartActions';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import CheckoutSteps from './CheckoutSteps';
+import { createOrder, detailsOrder } from '../../actions/orderActions';
 
+function Order(props) {
+	const dispatch = useDispatch();
+	useEffect(() => {
+		dispatch(detailsOrder(props.match.params.id));
+		return () => {};
+	}, []);
 
+	const orderDetails = useSelector((state) => state.orderDetails);
+	const { loading, order, error } = orderDetails;
+	const payHandler = () => {};
+	console.log(orderDetails);
 
-
-export default function Orders() {
-    return (
-        <div>
-            <Container fluid={true} id="order_container">
-            <Row id="order_title">
-                    <h3>Egyedi Megrendelések</h3>
-                </Row>
-             <Row id="order_image_wrapper">
-                <img className="order_img" alt="" src={baby}></img>
-                <div id="order_text">
-                <div>
-                <p>Ha valami igazán különlegessel szeretnéd meglepni babátváró ismerőseid vagy éppen magadat, állok rendelkezésedre.
-                Bármilyen ötlettel is fordulj hozzám, megpróbálom azt életre kelteni.
-                Küldj egy képet vagy rajzot az elképzeléseidről a 
-                drschvarczne@gmail.com email címre vagy keress a +36 30 6678694-es telefonszámon.
-                    Ár kategóriák:
-                </p>
-                </div>
-                <div>
-                <ul>
-                <li>Egyedi játékok</li>
-                <li>Kisbaba holmik</li>
-                <li>Meseszép kötött pulcsik</li>
-                <li>Patchworks</li>
-                <li>Kiegészítők télre</li>
-                </ul>
-                </div>
-                </div>
-                <img className="order_img" alt="" src={pulover}></img>
-                </Row>
-                <div>
-                <img id="img_sheep" alt="" src={sheep}></img>
-                </div>
-            </Container>
-            
-        </div>
-    )
+	return loading ? (
+		<div>Loading ...</div>
+	) : error ? (
+		<div>{error}</div>
+	) : (
+		<div>
+			<div className="placeorder">
+				<div className="placeorder-info">
+					<div>
+						<h3>Shipping</h3>
+						<div>
+							{order.shipping.address}, {order.shipping.city},
+							{order.shipping.postalCode}, {order.shipping.country},
+						</div>
+						<div>{order.isDelivered ? 'Delivered at ' + order.deliveredAt : 'Not Delivered.'}</div>
+					</div>
+					<div>
+						<h3>Payment</h3>
+						<div>Payment Method: {order.payment.paymentMethod}</div>
+						<div>{order.isPaid ? 'Paid at ' + order.paidAt : 'Not Paid.'}</div>
+					</div>
+					<div>
+						<ul className="cart-list-container">
+							<li>
+								<h3>Shopping Cart</h3>
+								<div>Price</div>
+							</li>
+							{order.orderItems.length === 0 ? (
+								<div>Cart is empty</div>
+							) : (
+								order.orderItems.map((item) => (
+									<li>
+										<div className="cart-image">
+											<img src={item.image} alt="product" />
+										</div>
+										<div className="cart-name">
+											<div>
+												<Link to={'/product/' + item.product}>{item.name}</Link>
+											</div>
+											<div>Qty: {item.qty}</div>
+										</div>
+										<div className="cart-price">${item.price}</div>
+									</li>
+								))
+							)}
+						</ul>
+					</div>
+				</div>
+				<div className="placeorder-action">
+					<ul>
+						<li>
+							<button className="button primary full-width" onClick={payHandler}>
+								Pay Now
+							</button>
+						</li>
+						<li>
+							<h3>Order Summary</h3>
+						</li>
+						<li>
+							<div>Items</div>
+							<div>${order.itemsPrice}</div>
+						</li>
+						<li>
+							<div>Shipping</div>
+							<div>${order.shippingPrice}</div>
+						</li>
+						<li>
+							<div>Tax</div>
+							<div>${order.taxPrice}</div>
+						</li>
+						<li>
+							<div>Order Total</div>
+							<div>${order.totalPrice}</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	);
 }
+
+export default Order;
