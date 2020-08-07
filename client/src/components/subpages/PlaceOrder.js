@@ -23,7 +23,6 @@ function PlaceOrder(props) {
 	const dispatch = useDispatch();
 
 	const placeOrderHandler = () => {
-		// create an order
 		dispatch(
 			createOrder({
 				orderItems: cartItems,
@@ -75,7 +74,7 @@ function PlaceOrder(props) {
 								<div>Cart is empty</div>
 							) : (
 								cartItems.map((item) => (
-									<li>
+									<li key={item.name}>
 										<div className="cart-image">
 											<img src={item.image} alt="product" />
 										</div>
@@ -94,6 +93,10 @@ function PlaceOrder(props) {
 				</div>
 				<div className="placeorder-action">
 					<ul>
+						<li>
+							{loading && <div>Loading...</div>}
+							{error && <div>{error}</div>}
+						</li>
 						<li>
 							<button className="button primary full-width" onClick={placeOrderHandler}>
 								Place Order

@@ -399,6 +399,7 @@ tbody > tr:nth-child(odd) {
 	display: flex;
 	flex-grow: wrap;
 	padding: 1rem;
+	margin-top: 5rem;
 	justify-content: space-between;
 }
 .placeorder-info {
@@ -434,4 +435,8 @@ tbody > tr:nth-child(odd) {
 	font-size: 2rem;
 	font-weight: bold;
 	color: #c04000;
+}
+
+.placeorder-actions-payment > div {
+	width: 100%;
 }
