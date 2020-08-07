@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { logout } from '../../actions/userActions';
 import knitting from '../../assets/knitting.svg';
 
 const Header = (props) => {
@@ -9,6 +10,11 @@ const Header = (props) => {
 	const toggle = () => setIsOpen(!isOpen);
 	const userSignIn = useSelector((state) => state.userSignIn);
 	const { userInfo } = userSignIn;
+	const dispatch = useDispatch();
+	const handleLogout = () => {
+		dispatch(logout());
+	};
+
 	return (
 		<div>
 			<Navbar id="mainNavbar" light expand="md" fixed="top">
@@ -42,6 +48,21 @@ const Header = (props) => {
 								</Link>
 							)}
 						</NavItem>
+						<NavItem>
+							{userInfo &&
+							userInfo._isAdmin && (
+								<div className="dropdown">
+									<a href="#">Admin</a>
+									<ul className="dropdown-content">
+										<li>
+											<Link to="/manageorders">Orders</Link>
+											<Link to="/products">Products</Link>
+										</li>
+									</ul>
+								</div>
+							)}
+						</NavItem>
+						<NavItem>{userInfo && <Link onClick={handleLogout}>Log out</Link>}</NavItem>
 						<NavItem onClick={toggle}>
 							<Link className="nav_link" to="/cart">
 								Cart

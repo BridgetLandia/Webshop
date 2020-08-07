@@ -11,7 +11,13 @@ import {
 	ORDER_PAY_FAIL,
 	MY_ORDER_LIST_SUCCESS,
 	MY_ORDER_LIST_FAIL,
-	MY_ORDER_LIST_REQUEST
+	MY_ORDER_LIST_REQUEST,
+	ORDER_DELETE_REQUEST,
+	ORDER_DELETE_SUCCESS,
+	ORDER_DELETE_FAIL,
+	ORDER_LIST_REQUEST,
+	ORDER_LIST_SUCCESS,
+	ORDER_LIST_FAIL
 } from '../constants/orderConstants';
 
 const createOrder = (order) => async (dispatch, getState) => {
@@ -26,6 +32,19 @@ const createOrder = (order) => async (dispatch, getState) => {
 		dispatch({ type: ORDER_CREATE_SUCCESS, payload: newOrder });
 	} catch (error) {
 		dispatch({ type: ORDER_CREATE_FAIL, payload: error.message });
+	}
+};
+
+const listOrders = () => async (dispatch, getState) => {
+	try {
+		dispatch({ type: ORDER_LIST_REQUEST });
+		const { userSignIn: { userInfo } } = getState();
+		const { data } = await axios.get('/api/orders', {
+			headers: { Authorization: 'Bearer ' + userInfo.token }
+		});
+		dispatch({ type: ORDER_LIST_SUCCESS, payload: data });
+	} catch (error) {
+		dispatch({ type: ORDER_LIST_FAIL, payload: error.message });
 	}
 };
 
@@ -68,4 +87,17 @@ const listMyOrders = () => async (dispatch, getState) => {
 	}
 };
 
-export { createOrder, detailsOrder, payOrder, listMyOrders };
+const deleteOrder = (orderId) => async (dispatch, getState) => {
+	try {
+		dispatch({ type: ORDER_DELETE_REQUEST, payload: orderId });
+		const { userSignIn: { userInfo } } = getState();
+		const { data } = await axios.delete('/api/orders/' + orderId, {
+			headers: { Authorization: 'Bearer ' + userInfo.token }
+		});
+		dispatch({ type: ORDER_DELETE_SUCCESS, payload: data });
+	} catch (error) {
+		dispatch({ type: ORDER_DELETE_FAIL, payload: error.message });
+	}
+};
+
+export { createOrder, detailsOrder, payOrder, listMyOrders, listOrders, deleteOrder };

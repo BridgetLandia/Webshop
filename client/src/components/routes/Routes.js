@@ -12,6 +12,7 @@ import Payment from '../subpages/Payment';
 import PlaceOrder from '../subpages/PlaceOrder';
 import Order from '../subpages/Order';
 import UserProfile from '../subpages/UserProfile';
+import ManageOrders from '../subpages/ManageOrders';
 
 export default function Routes() {
 	return (
@@ -28,6 +29,7 @@ export default function Routes() {
 				<Route path="/payment" component={Payment} />
 				<Route path="/order/:id" component={Order} />
 				<Route path="/profile" component={UserProfile} />
+				<Route path="/manageorders" component={ManageOrders} />
 				<Route component={NotFound} />
 			</Switch>
 		</div>
