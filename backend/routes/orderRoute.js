@@ -17,9 +17,11 @@ router.get('/mine', isAuth, async (req, res) => {
 router.get('/:id', isAuth, async (req, res) => {
 	const order = await Order.findOne({ _id: req.params.id });
 	if (order) {
-		res.send(order);
-	} else {
-		res.status(404).send('Order Not Found.');
+		try {
+			res.send(order);
+		} catch (error) {
+			res.send({ msg: error.message });
+		}
 	}
 });
 
@@ -61,10 +63,12 @@ router.put('/:id/pay', isAuth, async (req, res) => {
 router.delete('/:id', isAuth, isAdmin, async (req, res) => {
 	const order = await Order.findOne({ _id: req.params.id });
 	if (order) {
-		const deletedOrder = await order.remove();
-		res.send(deletedOrder);
-	} else {
-		res.status(404).send('Order Not Found.');
+		try {
+			const deletedOrder = await order.remove();
+			res.send(deletedOrder);
+		} catch (error) {
+			res.send({ msg: error.message });
+		}
 	}
 });
 

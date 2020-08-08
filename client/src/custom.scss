@@ -205,6 +205,22 @@ a:hover {
 	margin-bottom: 1rem;
 }
 
+//Sidebar
+
+.sidebar {
+	margin-top: 5rem;
+	background: #1a237e;
+}
+
+.sidebar_nav_titel {
+	margin-top: 3rem;
+}
+
+.searchKeyword {
+	padding: 0.5rem;
+	width: 11rem;
+}
+
 /* Product Details */
 .details {
 	display: flex;
@@ -251,7 +267,7 @@ a:hover {
 }
 .button {
 	padding: 0.5rem;
-	margin-bottom: 0.5rem;
+	margin: 0.9rem;
 	border: 0.1rem #808080 solid;
 	border-radius: 0.5rem;
 	cursor: pointer;
@@ -439,4 +455,18 @@ tbody > tr:nth-child(odd) {
 
 .placeorder-actions-payment > div {
 	width: 100%;
+}
+
+/* Profile */
+
+.profile {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.profile-info {
+	flex: 1 1 30rem;
+}
+.profile-orders {
+	flex: 3 1 60rem;
 }

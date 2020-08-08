@@ -1,11 +1,24 @@
 import React, { useState } from 'react';
-import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
+import {
+	Collapse,
+	Navbar,
+	NavbarToggler,
+	NavbarBrand,
+	Nav,
+	NavItem,
+	Dropdown,
+	DropdownItem,
+	DropdownToggle,
+	DropdownMenu
+} from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../../actions/userActions';
 import knitting from '../../assets/knitting.svg';
 
 const Header = (props) => {
+	const [ dropdownOpen, setDropdownOpen ] = useState(false);
+	const toggledown = () => setDropdownOpen(!dropdownOpen);
 	const [ isOpen, setIsOpen ] = useState(false);
 	const toggle = () => setIsOpen(!isOpen);
 	const userSignIn = useSelector((state) => state.userSignIn);
@@ -48,21 +61,31 @@ const Header = (props) => {
 								</Link>
 							)}
 						</NavItem>
+
+						{userInfo &&
+						userInfo._isAdmin && (
+							<Dropdown nav isOpen={dropdownOpen} toggle={toggledown}>
+								<DropdownToggle nav caret>
+									Admin
+								</DropdownToggle>
+								<DropdownMenu>
+									<DropdownItem>
+										<Link to="/manageorders">Orders</Link>
+									</DropdownItem>
+									<DropdownItem>
+										<Link to="/products">Products</Link>
+									</DropdownItem>
+								</DropdownMenu>
+							</Dropdown>
+						)}
+
 						<NavItem>
-							{userInfo &&
-							userInfo._isAdmin && (
-								<div className="dropdown">
-									<a href="#">Admin</a>
-									<ul className="dropdown-content">
-										<li>
-											<Link to="/manageorders">Orders</Link>
-											<Link to="/products">Products</Link>
-										</li>
-									</ul>
-								</div>
+							{userInfo && (
+								<Link to="/" onClick={handleLogout}>
+									Log out
+								</Link>
 							)}
 						</NavItem>
-						<NavItem>{userInfo && <Link onClick={handleLogout}>Log out</Link>}</NavItem>
 						<NavItem onClick={toggle}>
 							<Link className="nav_link" to="/cart">
 								Cart

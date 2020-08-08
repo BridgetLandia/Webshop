@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { saveProduct, listProducts, deleteProduct } from '../../actions/productActions';
+import axios from 'axios';
 
 export default function AddProduct() {
 	const [ modalVisible, setModalVisible ] = useState(false);
@@ -8,6 +9,8 @@ export default function AddProduct() {
 	const [ name, setName ] = useState('');
 	const [ price, setPrice ] = useState('');
 	const [ image, setImage ] = useState('');
+	const [ previewSource, setPreviewSource ] = useState('');
+	const [ uploading, setUploading ] = useState(false);
 	const [ category, setCategory ] = useState('');
 	const [ countInStock, setCountInStock ] = useState('');
 	const [ description, setDescription ] = useState('');
@@ -62,6 +65,38 @@ export default function AddProduct() {
 	const deleteHandler = (product) => {
 		dispatch(deleteProduct(product._id));
 	};
+
+	const uploadFileHandler = (e) => {
+		const file = e.target.files[0];
+		const bodyFormData = new FormData();
+		setImage(file.name);
+		bodyFormData.append('image', file);
+		previewFile(file);
+		setUploading(true);
+		axios
+			.post('/api/uploads', bodyFormData, {
+				headers: {
+					'Content-Type': 'multipart/form-data'
+				}
+			})
+			.then((response) => {
+				setImage(response.data);
+				setUploading(false);
+			})
+			.catch((err) => {
+				console.log(err);
+				setUploading(false);
+			});
+	};
+
+	const previewFile = (file) => {
+		const reader = new FileReader();
+		reader.readAsDataURL(file);
+		reader.onloadend = () => {
+			setPreviewSource(reader.result);
+		};
+	};
+
 	return (
 		<div className="content content-margined">
 			<div className="product-header">
@@ -111,6 +146,9 @@ export default function AddProduct() {
 									id="image"
 									onChange={(e) => setImage(e.target.value)}
 								/>
+								<input type="file" onChange={uploadFileHandler} />
+								{uploading && <div>Uploading...</div>}
+								{previewSource && <img src={previewSource} alt="chosen" style={{ height: '300px' }} />}
 							</li>
 							<li>
 								<label htmlFor="countInStock">CountInStock</label>

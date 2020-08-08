@@ -30,6 +30,7 @@ export default function Routes() {
 				<Route path="/order/:id" component={Order} />
 				<Route path="/profile" component={UserProfile} />
 				<Route path="/manageorders" component={ManageOrders} />
+				<Route path="/category/:id" component={Shop} />
 				<Route component={NotFound} />
 			</Switch>
 		</div>
