@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { listProducts } from '../../actions/productActions';
 import { Link } from 'react-router-dom';
-import { Container, Row, Col, Nav, NavItem, NavLink } from 'reactstrap';
+import { Container, Row, Col, Nav, NavItem, Form, Input } from 'reactstrap';
 
 export default function NewShop(props) {
 	const [ searchKeyword, setSearchKeyword ] = useState('');
@@ -39,7 +39,10 @@ export default function NewShop(props) {
 				<Col className="sidebar" md={2}>
 					<Nav className="sidebar_nav" vertical>
 						<NavItem className="sidebar_nav_titel">
-							<h3>Categories</h3>
+							<h4>Categories</h4>
+						</NavItem>
+						<NavItem>
+							<Link to="/category/Shirts">All</Link>
 						</NavItem>
 						<NavItem>
 							<Link to="/category/Shirts">Shirts</Link>
@@ -48,12 +51,14 @@ export default function NewShop(props) {
 							<Link to="/category/Pants">Pants</Link>
 						</NavItem>
 						<NavItem>
-							<h4>Sort By </h4>
-							<select name="sortOrder" onChange={sortHandler}>
-								<option value="">Newest</option>
-								<option value="lowest">Lowest</option>
-								<option value="highest">Highest</option>
-							</select>
+							<h4 className="sidebar_nav_titel">Sort By </h4>
+							<Form>
+								<Input type="select" name="sortOrder" onChange={sortHandler}>
+									<option value="">Newest</option>
+									<option value="lowest">Lowest</option>
+									<option value="highest">Highest</option>
+								</Input>
+							</Form>
 						</NavItem>
 						<NavItem>
 							<form onSubmit={submitHandler}>

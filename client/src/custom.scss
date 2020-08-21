@@ -1,8 +1,9 @@
 @import '~bootstrap/scss/bootstrap.scss';
+$base-color: #00e5ff;
 
 // Start Navbar
 #mainNavbar {
-	background: white;
+	background: #21afbd7d;
 }
 
 #logo {
@@ -19,24 +20,29 @@
 }
 
 #business_name {
-	color: teal;
+	color: $base-color;
 	font-family: 'Architects Daughter', cursive;
 }
 
 #mainNavbar .nav_link {
-	color: teal;
+	color: $base-color;
 	font-size: 1rem;
 	font-weight: 400;
 	transition: text 3s ease-in;
 }
 
-#mainNavbar .nav-link:hover {
+#mainNavbar .nav_link:hover {
 	color: #d79abc;
 	cursor: pointer;
 }
 
 .nav-item {
 	padding-right: 1rem;
+}
+
+.navbar-expand-md .navbar-nav .nav-link {
+	padding: 0;
+	color: $base-color;
 }
 
 // Start Homepage
@@ -174,9 +180,9 @@ a:hover {
 .products li {
 	list-style-type: none;
 	padding: 0;
-	flex: 0 1 34rem;
+	flex: 0 1 15rem;
 	margin: 1rem;
-	height: 50rem;
+	height: 40rem;
 	border-bottom: .1rem #c0c0c0 solid;
 }
 .product {
@@ -186,20 +192,16 @@ a:hover {
 	height: 100%;
 }
 .product-name {
-	font-size: 2rem;
+	font-size: 1rem;
 	font-weight: bold;
-}
-.product-brand {
-	font-size: 1.2rem;
-	color: #808080;
 }
 .product-price {
 	font-size: 2rem;
 	font-weight: bold;
 }
 .product-image {
-	max-width: 34rem;
-	max-height: 34rem;
+	max-width: 25rem;
+	max-height: 25rem;
 }
 .product-rating {
 	margin-bottom: 1rem;
@@ -209,14 +211,16 @@ a:hover {
 
 .sidebar {
 	margin-top: 5rem;
-	background: #1a237e;
+	background: #040937e6;
 }
 
 .sidebar_nav_titel {
 	margin-top: 3rem;
+	color: #e9ecef;
 }
 
 .searchKeyword {
+	margin-top: 1rem;
 	padding: 0.5rem;
 	width: 11rem;
 }

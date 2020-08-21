@@ -51,17 +51,10 @@ const Header = (props) => {
 							</Link>
 						</NavItem>
 						<NavItem onClick={toggle}>
-							{userInfo ? (
-								<Link className="nav_link" to="/profile">
-									{userInfo._name}
-								</Link>
-							) : (
-								<Link className="nav_link" to="/signin">
-									Sign in
-								</Link>
-							)}
+							<Link className="nav_link" to="/cart">
+								Cart
+							</Link>
 						</NavItem>
-
 						{userInfo &&
 						userInfo._isAdmin && (
 							<Dropdown nav isOpen={dropdownOpen} toggle={toggledown}>
@@ -79,17 +72,23 @@ const Header = (props) => {
 							</Dropdown>
 						)}
 
+						<NavItem onClick={toggle}>
+							{userInfo ? (
+								<Link className="nav_link" to="/profile">
+									{userInfo._name}
+								</Link>
+							) : (
+								<Link className="nav_link" to="/signin">
+									Sign in
+								</Link>
+							)}
+						</NavItem>
 						<NavItem>
 							{userInfo && (
 								<Link to="/" onClick={handleLogout}>
 									Log out
 								</Link>
 							)}
-						</NavItem>
-						<NavItem onClick={toggle}>
-							<Link className="nav_link" to="/cart">
-								Cart
-							</Link>
 						</NavItem>
 					</Nav>
 				</Collapse>

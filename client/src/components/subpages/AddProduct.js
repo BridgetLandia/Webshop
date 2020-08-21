@@ -74,7 +74,7 @@ export default function AddProduct() {
 		previewFile(file);
 		setUploading(true);
 		axios
-			.post('/api/uploads', bodyFormData, {
+			.post('/api/uploads/s3', bodyFormData, {
 				headers: {
 					'Content-Type': 'multipart/form-data'
 				}
