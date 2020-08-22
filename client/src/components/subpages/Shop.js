@@ -50,31 +50,29 @@ export default function NewShop(props) {
 						<NavItem>
 							<Link to="/category/Pants">Pants</Link>
 						</NavItem>
-						<NavItem>
-							<h4 className="sidebar_nav_titel">Sort By </h4>
-							<Form>
-								<Input type="select" name="sortOrder" onChange={sortHandler}>
-									<option value="">Newest</option>
-									<option value="lowest">Lowest</option>
-									<option value="highest">Highest</option>
-								</Input>
-							</Form>
-						</NavItem>
-						<NavItem>
-							<form onSubmit={submitHandler}>
-								<input
-									className="searchKeyword"
-									name="searchKeyword"
-									onChange={(e) => setSearchKeyword(e.target.value)}
-								/>
-								<button className="button primary" type="submit">
-									Search
-								</button>
-							</form>
-						</NavItem>
 					</Nav>
 				</Col>
 				<Col md={10}>
+					<div id="filter_container">
+						<h4 className="sidebar_nav_titel">Sort By </h4>
+						<Form>
+							<Input type="select" name="sortOrder" onChange={sortHandler}>
+								<option value="">Newest</option>
+								<option value="lowest">Lowest</option>
+								<option value="highest">Highest</option>
+							</Input>
+						</Form>
+						<form onSubmit={submitHandler}>
+							<input
+								className="searchKeyword"
+								name="searchKeyword"
+								onChange={(e) => setSearchKeyword(e.target.value)}
+							/>
+							<button className="button primary" type="submit">
+								Search
+							</button>
+						</form>
+					</div>
 					<div className="products">
 						{products.map((product) => (
 							<li key={product._id}>

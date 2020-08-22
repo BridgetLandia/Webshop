@@ -13,34 +13,36 @@ export default function Home() {
 	return (
 		<div>
 			<Container fluid={true} className="mainContent">
-				<div id="welcome_text_container">
-					<div
-						ref={(ref) => {
-							setRef(ref);
-						}}
-						data-aos="fade-up"
-						className="welcome_text_title"
-					>
-						<h3>Welcome to the Shop!</h3>
+				<div>
+					<div id="welcome_text_container">
+						<div
+							ref={(ref) => {
+								setRef(ref);
+							}}
+							data-aos="fade-up"
+							className="welcome_text_title"
+						>
+							<h3>Welcome to the Shop!</h3>
+						</div>
+						<div
+							ref={(ref) => {
+								setRef(ref);
+							}}
+							data-aos="fade-right"
+							className="welcome_text"
+						>
+							Here you will find what you are looking for.
+						</div>
+						<p
+							ref={(ref) => {
+								setRef(ref);
+							}}
+							data-aos="fade-up"
+							className="welcome_text_last"
+						>
+							Here everything was made with love and care.
+						</p>
 					</div>
-					<div
-						ref={(ref) => {
-							setRef(ref);
-						}}
-						data-aos="fade-right"
-						className="welcome_text"
-					>
-						Here you will find what you are looking for.
-					</div>
-					<p
-						ref={(ref) => {
-							setRef(ref);
-						}}
-						data-aos="fade-up"
-						className="welcome_text_last"
-					>
-						Here everything was made with love and care.
-					</p>
 				</div>
 			</Container>
 		</div>

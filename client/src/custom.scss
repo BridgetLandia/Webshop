@@ -1,9 +1,9 @@
 @import '~bootstrap/scss/bootstrap.scss';
-$base-color: #00e5ff;
+$base-color: #ffc107;
 
 // Start Navbar
 #mainNavbar {
-	background: #21afbd7d;
+	background: #649c9fbf;
 }
 
 #logo {
@@ -25,7 +25,7 @@ $base-color: #00e5ff;
 }
 
 #mainNavbar .nav_link {
-	color: $base-color;
+	color: #f7d671;
 	font-size: 1rem;
 	font-weight: 400;
 	transition: text 3s ease-in;
@@ -47,20 +47,17 @@ $base-color: #00e5ff;
 
 // Start Homepage
 .mainContent {
-	background: url("./assets/main.jpg");
+	background: linear-gradient(to right, rgba(190, 225, 229, 0.5), rgba(6, 34, 34, 0.79)),
+		url("./assets/230199_orig_14.jpg") no-repeat fixed top center / cover;
 	background-position: top;
 	background-repeat: no-repeat;
 	background-size: cover;
-	height: 75vh;
+	height: 90vh;
 }
 
 h3 {
 	font-family: 'Architects Daughter', cursive;
-	color: teal;
-}
-
-#bigger {
-	font-size: 2rem;
+	color: $base-color;
 }
 
 #welcome_text_container {
@@ -76,23 +73,19 @@ h3 {
 	margin-top: 2rem;
 	display: flex;
 	width: 40%;
-	color: teal;
+	color: $base-color;
 }
 
 .welcome_text {
 	display: flex;
 	padding-top: 2rem;
 	width: 40%;
-	color: #0e9aa7;
+	color: $base-color;
 }
 
 .welcome_text_last {
-	color: #0e9aa7;
+	color: $base-color;
 	margin-top: 1rem;
-}
-
-#biscuit {
-	height: 25px;
 }
 
 //Footer
@@ -210,12 +203,11 @@ a:hover {
 //Sidebar
 
 .sidebar {
-	margin-top: 5rem;
 	background: #040937e6;
 }
 
 .sidebar_nav_titel {
-	margin-top: 3rem;
+	margin-top: 6rem;
 	color: #e9ecef;
 }
 

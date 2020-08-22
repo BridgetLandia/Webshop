@@ -14,7 +14,7 @@ import {
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../../actions/userActions';
-import knitting from '../../assets/knitting.svg';
+import xbox from '../../assets/xbox.svg';
 
 const Header = (props) => {
 	const [ dropdownOpen, setDropdownOpen ] = useState(false);
@@ -32,10 +32,10 @@ const Header = (props) => {
 		<div>
 			<Navbar id="mainNavbar" light expand="md" fixed="top">
 				<Link to="/">
-					<img id="logo" src={knitting} alt="logo" />
+					<img id="logo" src={xbox} alt="logo" />
 				</Link>
 				<NavbarBrand href="/">
-					<span id="business_name">Knit-style</span>
+					<span id="business_name">Game shop</span>
 				</NavbarBrand>
 				<NavbarToggler onClick={toggle} />
 				<Collapse isOpen={isOpen} navbar>
