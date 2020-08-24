@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { listProducts } from '../../actions/productActions';
 import { Link } from 'react-router-dom';
-import { Container, Row, Col, Nav, NavItem, Form, Input } from 'reactstrap';
+import { Container, Row, Col, Nav, NavItem, Form, Input, Spinner } from 'reactstrap';
 
 export default function NewShop(props) {
 	const [ searchKeyword, setSearchKeyword ] = useState('');
@@ -30,7 +30,9 @@ export default function NewShop(props) {
 	);
 
 	return loading ? (
-		<div>Loading...</div>
+		<div className="loading">
+			<Spinner size="m" color="secondary" />
+		</div>
 	) : error ? (
 		<div>{error}</div>
 	) : (
@@ -42,26 +44,25 @@ export default function NewShop(props) {
 							<h4>Categories</h4>
 						</NavItem>
 						<NavItem>
-							<Link to="/category/Shirts">All</Link>
+							<Link to="/shop">All</Link>
 						</NavItem>
 						<NavItem>
-							<Link to="/category/Shirts">Shirts</Link>
+							<Link to="/category/Xbox">Xbox</Link>
 						</NavItem>
 						<NavItem>
-							<Link to="/category/Pants">Pants</Link>
+							<Link to="/category/PS4">PS4</Link>
 						</NavItem>
+						<Form>
+							<Input className="filter" type="select" value={sortOrder} onChange={sortHandler}>
+								<option>New</option>
+								<option value="lowest">Lowest Price</option>
+								<option value="highest">Highest Price</option>
+							</Input>
+						</Form>
 					</Nav>
 				</Col>
 				<Col md={10}>
 					<div id="filter_container">
-						<h4 className="sidebar_nav_titel">Sort By </h4>
-						<Form>
-							<Input type="select" name="sortOrder" onChange={sortHandler}>
-								<option value="">Newest</option>
-								<option value="lowest">Lowest</option>
-								<option value="highest">Highest</option>
-							</Input>
-						</Form>
 						<form onSubmit={submitHandler}>
 							<input
 								className="searchKeyword"
@@ -83,7 +84,6 @@ export default function NewShop(props) {
 									<div className="product-name">
 										<a href={'/product/' + product._id}>{product.name}</a>
 									</div>
-									<div className="product-brand">{product.brand}</div>
 									<div className="product-price">${product.price}</div>
 									<div className="product-rating">
 										{product.rating} Stars ({product.numReiews} Reviews)

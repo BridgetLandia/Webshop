@@ -18,7 +18,7 @@ export default function ProductDetails(props) {
 	return (
 		<div>
 			<div className="back-to-result">
-				<Link to="/">Back to result</Link>
+				<Link to="/">Back to shop</Link>
 			</div>
 			{loading ? (
 				<div>Loading...</div>

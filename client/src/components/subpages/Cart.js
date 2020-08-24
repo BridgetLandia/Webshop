@@ -36,7 +36,7 @@ export default function Cart(props) {
 						<div>Cart is empty</div>
 					) : (
 						cartItems.map((item) => (
-							<li key={item._id}>
+							<li key={item.product}>
 								<div className="cart-image">
 									<img src={item.image} alt="product" />
 								</div>
@@ -73,7 +73,7 @@ export default function Cart(props) {
 			</div>
 			<div className="cart-action">
 				<h3>
-					Subtotal ( {cartItems.reduce((a, c) => a + c.qty, 0)} items) : ${' '}
+					Subtotal ( {cartItems.reduce((a, c) => Number(a) + Number(c.qty), 0)} items) : ${}
 					{cartItems.reduce((a, c) => a + c.price * c.qty, 0)}
 				</h3>
 				<button
