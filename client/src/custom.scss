@@ -1,6 +1,7 @@
 @import '~bootstrap/scss/bootstrap.scss';
 $base-color: #ffc107;
 $ancor-color: #03ffb7;
+$nav-color: #ffffff7d;
 
 body {
 	background-color: #090a20;
@@ -13,7 +14,7 @@ a {
 
 // Start Navbar
 #mainNavbar {
-	background: #ffffff7d;
+	background: $nav-color;
 }
 
 #logo {
@@ -109,6 +110,30 @@ h3 {
 	height: 70vh;
 }
 
+.news_image {
+	height: 10rem;
+	margin-bottom: 2rem;
+}
+#carousel_container {
+	margin-top: 10rem;
+}
+#carousel_wrapper {
+	margin: 5rem;
+	height: 90vh;
+	margin-top: 10rem;
+}
+
+//Particles -js
+.particles_wrapper {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	background-image: url('');
+	background-size: cover;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+}
+
 //Footer
 
 .footer {
@@ -140,6 +165,9 @@ h3 {
 //Media@
 
 @media only screen and (max-width: 768px) {
+	#mainNavbar {
+		background: #ffffff;
+	}
 	.mainContent {
 		background: linear-gradient(to right, rgba(6, 34, 34, 0.79), rgba(6, 34, 34, 0.79)),
 			url("./assets/230199_orig_14.jpg") no-repeat fixed right/cover;
@@ -170,6 +198,16 @@ h3 {
 		color: $base-color;
 	}
 
+	#carousel_container {
+		margin-top: 50rem;
+	}
+
+	#carousel_wrapper {
+		margin: 2rem;
+		height: 40vh;
+		margin-top: 10rem;
+	}
+
 	#shop_title {
 		display: flex;
 		justify-items: center;
@@ -183,6 +221,17 @@ h3 {
 		margin-top: 1.5rem;
 		margin-right: 0.5rem;
 		font-size: 0.7rem;
+	}
+	.profile-info {
+		flex: 1;
+	}
+	.form-container {
+		display: flex;
+		flex-direction: column;
+		padding: 2rem;
+		border: .1rem #c0c0c0 solid;
+		border-radius: .5rem;
+		list-style-type: none;
 	}
 }
 
@@ -286,13 +335,15 @@ a:hover {
 .back-to-result {
 	margin-top: 5rem;
 	padding-top: 1rem;
+	margin-right: 1rem;
 	display: flex;
 	justify-content: flex-end;
 }
 .details-action {
 	border: 0.1rem #808080 solid;
 	border-radius: 0.5rem;
-	background-color: #f8f8f8;
+	padding: 1rem;
+	background-color: $nav-color;
 }
 .details-action ul li:last-child {
 	display: flex;
@@ -383,7 +434,7 @@ a:hover {
 .form-container {
 	display: flex;
 	flex-direction: column;
-	width: 32rem;
+	width: 28rem;
 	padding: 2rem;
 	border: .1rem #c0c0c0 solid;
 	border-radius: .5rem;
@@ -440,12 +491,13 @@ input {
 
 .table {
 	width: 100%;
+	color: $ancor-color;
 }
 th {
 	text-align: left;
 }
 tbody > tr:nth-child(odd) {
-	background-color: #f0f0f0;
+	background-color: #ffffff7d;
 }
 
 /* Checkout Steps */
@@ -455,6 +507,7 @@ tbody > tr:nth-child(odd) {
 	justify-content: space-between;
 	width: 40rem;
 	margin: 1rem auto;
+	margin-top: 5rem;
 }
 .checkout-steps > div {
 	border-top: .3rem #c0c0c0 solid;
@@ -483,13 +536,13 @@ tbody > tr:nth-child(odd) {
 	flex: 1 1 20rem;
 	border: .1rem #c0c0c0 solid;
 	border-radius: .5rem;
-	background-color: #fcfcfc;
+	background-color: $nav-color;
 	padding: 1rem;
 }
 .placeorder-info > div {
 	border: .1rem #c0c0c0 solid;
 	border-radius: .5rem;
-	background-color: #fcfcfc;
+	background-color: $nav-color;
 	padding: 1rem;
 	margin: 1rem;
 }
@@ -508,7 +561,7 @@ tbody > tr:nth-child(odd) {
 .placeorder-action > ul > li:last-child {
 	font-size: 2rem;
 	font-weight: bold;
-	color: #c04000;
+	color: $ancor-color;
 }
 
 .placeorder-actions-payment > div {
@@ -523,8 +576,54 @@ tbody > tr:nth-child(odd) {
 }
 
 .profile-info {
-	flex: 1 1 30rem;
+	flex: 1;
 }
 .profile-orders {
-	flex: 3 1 60rem;
+	flex: 1;
+}
+
+@media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
+	/* Force table to not be like tables anymore */
+	table,
+	thead,
+	tbody,
+	th,
+	td,
+	tr {
+		display: block;
+	}
+
+	/* Hide table headers (but not display: none;, for accessibility) */
+	thead tr {
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+
+	tr {
+		border: 1px solid #ccc;
+	}
+
+	td {
+		/* Behave  like a "row" */
+		border: none;
+		border-bottom: 1px solid #eee;
+		position: relative;
+		padding-left: 50%;
+	}
+
+	td:before {
+		/* Now like a table header */
+		position: absolute;
+		/* Top/left values mimic padding */
+		top: 6px;
+		left: 6px;
+		width: 45%;
+		padding-right: 10px;
+		white-space: nowrap;
+	}
+
+	/*
+	Label the data
+	*/
 }

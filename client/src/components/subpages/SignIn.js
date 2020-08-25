@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { signIn } from '../../actions/userActions';
+import { Spinner } from 'reactstrap';
 
 export default function SignIn(props) {
 	const [ email, setEmail ] = useState('');
@@ -34,7 +35,11 @@ export default function SignIn(props) {
 						<h2>Login</h2>
 					</li>
 					<li>
-						{loading && <div>Loading...</div>}
+						{loading && (
+							<div className="loading">
+								<Spinner size="m" color="secondary" />
+							</div>
+						)}
 						{error && <div>{error}</div>}
 					</li>
 					<li>

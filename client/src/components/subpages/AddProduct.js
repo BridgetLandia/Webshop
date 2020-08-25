@@ -148,7 +148,7 @@ export default function AddProduct() {
 								/>
 								<input type="file" onChange={uploadFileHandler} />
 								{uploading && <div>Uploading...</div>}
-								{previewSource && <img src={previewSource} alt="chosen" style={{ height: '300px' }} />}
+								{previewSource && <img src={previewSource} alt="chosen" style={{ height: '500px' }} />}
 							</li>
 							<li>
 								<label htmlFor="countInStock">CountInStock</label>

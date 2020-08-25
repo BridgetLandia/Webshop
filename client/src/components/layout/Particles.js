@@ -2,20 +2,12 @@ import React from 'react';
 import Particles from 'react-particles-js';
 
 export default () => (
-	<div
-		style={{
-			position: 'absolute',
-			top: 0,
-			left: 0,
-			width: '100%',
-			height: '100%'
-		}}
-	>
+	<div className="particles_wrapper">
 		<Particles
 			params={{
 				particles: {
 					number: {
-						value: 150,
+						value: 160,
 						density: {
 							enable: true,
 							value_area: 1803.4120608655228
@@ -27,7 +19,7 @@ export default () => (
 					shape: {
 						type: 'circle',
 						stroke: {
-							width: 2,
+							width: 3,
 							color: '#000000'
 						},
 						polygon: {

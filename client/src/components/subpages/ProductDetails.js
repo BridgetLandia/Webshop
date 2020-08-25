@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { detailsProduct } from '../../actions/productActions';
+import { Spinner } from 'reactstrap';
 
 export default function ProductDetails(props) {
 	const [ qty, setQty ] = useState(1);
@@ -18,10 +19,12 @@ export default function ProductDetails(props) {
 	return (
 		<div>
 			<div className="back-to-result">
-				<Link to="/">Back to shop</Link>
+				<Link to="/shop">Back to shop</Link>
 			</div>
 			{loading ? (
-				<div>Loading...</div>
+				<div className="loading">
+					<Spinner size="m" color="secondary" />
+				</div>
 			) : error ? (
 				<div>{error}</div>
 			) : (

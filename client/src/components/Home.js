@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import AOS from 'aos';
 import { UncontrolledCarousel } from 'reactstrap';
+import sonic from '../assets/sonicm.png';
+import zelda from '../assets/zelda.png';
+import reznor from '../assets/reznor.png';
 
 const items = [
 	{
@@ -65,10 +68,24 @@ export default function Home() {
 				</div>
 			</Container>
 			<Container id="news">
-				<h2>News</h2>
+				<h2
+					ref={(ref) => {
+						setRef(ref);
+					}}
+					data-aos="fade-right"
+					className="welcome_text_title"
+				>
+					News
+				</h2>
 				<Row>
-					<Col cols="3">
-						<p>
+					<Col xs="12" sm="12" md="4">
+						<img src={sonic} className="news_image" />
+						<p
+							ref={(ref) => {
+								setRef(ref);
+							}}
+							data-aos="fade-up"
+						>
 							Sonic the Hedgehog is inside all of us. A gene and protein that separates your right brain
 							from the left, and determines you have two eyes is called sonic hedgehog. The gene’s symbol
 							is SHH. The name wasn’t inspired directly by the game, but a comic-book series. A British
@@ -76,26 +93,45 @@ export default function Home() {
 							reading. The gene appropriately has a spikey appearance.
 						</p>
 					</Col>
-					<Col cols="3">
-						<p>
+					<Col xs="12" sm="12" md="4">
+						<img src={reznor} className="news_image" />
+						<p
+							ref={(ref) => {
+								setRef(ref);
+							}}
+							data-aos="fade-up"
+						>
 							Super Mario and Nine Inch Nails Many of the Koopalings from the Super Mario games are named
 							after famous musicians. Most people can see the pattern in Ludwig, Iggy, and Lemmy’s names.
 							What you may not know is Super Mario World’s fire-breathing triceratops is named Reznor,
 							named after Trent Reznor of Nine Inch Nails, who also created the soundtrack for Quake.
 						</p>
 					</Col>
-					<Col cols="3">
-						<p>
-							Nintendo’s drug is the banana In the Game Boy title Final Fantasy Legend II, the player
-							encountered a group of opium smugglers, but Nintendo’s censorship guidelines wouldn’t allow
-							that to fly in the U.S. version. Instead of selling opium, the drug dealers were forced to
-							peddle bananas in the back alleys of this world.
+					<Col xs="12" sm="12" md="4">
+						<img src={zelda} className="news_image" />
+						<p
+							ref={(ref) => {
+								setRef(ref);
+							}}
+							data-aos="fade-up"
+						>
+							Nintendo genius Shigeru Miyamoto, creator of the Donkey Kong and Super Mario Brothers
+							franchises, is also credited with creating The Legend of Zelda franchise. Rather than
+							encouraging gamers to achieve a high score, Miyamoto's game was focused on exploration and
+							completion -- a relatively unique gaming concept at the time. His inspiration came from the
+							joy and wonder he felt while exploring fields, woods and caves as a child.
 						</p>
 					</Col>
 				</Row>
 				<p>Source: https://www.gameinformer.com/</p>
 			</Container>
-			<UncontrolledCarousel items={items} />
+			<Container id="carousel_container">
+				<Row>
+					<div id="carousel_wrapper">
+						<UncontrolledCarousel items={items} />
+					</div>
+				</Row>
+			</Container>
 		</div>
 	);
 }

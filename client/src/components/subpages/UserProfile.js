@@ -42,6 +42,38 @@ function UserProfile(props) {
 	return (
 		<div className="profile">
 			<div className="profile-info">
+				<div className="profile-orders content-margined">
+					{loadingOrders ? (
+						<div>Loading...</div>
+					) : errorOrders ? (
+						<div>{errorOrders} </div>
+					) : (
+						<table className="table">
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>DATE</th>
+									<th>TOTAL</th>
+									<th>PAID</th>
+									<th>ACTIONS</th>
+								</tr>
+							</thead>
+							<tbody>
+								{orders.map((order) => (
+									<tr key={order._id}>
+										<td>{order._id}</td>
+										<td>{order.createdAt}</td>
+										<td>{order.totalPrice}</td>
+										{order.isPaid ? <td> Yes</td> : <td>No</td>}
+										<td>
+											<Link to={'/order/' + order._id}>DETAILS</Link>
+										</td>
+									</tr>
+								))}
+							</tbody>
+						</table>
+					)}
+				</div>
 				<div className="form">
 					<form onSubmit={submitHandler}>
 						<ul className="form-container">
@@ -97,38 +129,6 @@ function UserProfile(props) {
 						</ul>
 					</form>
 				</div>
-			</div>
-			<div className="profile-orders content-margined">
-				{loadingOrders ? (
-					<div>Loading...</div>
-				) : errorOrders ? (
-					<div>{errorOrders} </div>
-				) : (
-					<table className="table">
-						<thead>
-							<tr>
-								<th>ID</th>
-								<th>DATE</th>
-								<th>TOTAL</th>
-								<th>PAID</th>
-								<th>ACTIONS</th>
-							</tr>
-						</thead>
-						<tbody>
-							{orders.map((order) => (
-								<tr key={order._id}>
-									<td>{order._id}</td>
-									<td>{order.createdAt}</td>
-									<td>{order.totalPrice}</td>
-									<td>{order.isPaid}</td>
-									<td>
-										<Link to={'/order/' + order._id}>DETAILS</Link>
-									</td>
-								</tr>
-							))}
-						</tbody>
-					</table>
-				)}
 			</div>
 		</div>
 	);
